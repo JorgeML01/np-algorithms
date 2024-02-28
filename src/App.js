@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import TravelingSalesperson from "./Pages/TravelingSalesperson/TravelingSalesperson";
+import TravelingSalesperson from "./Pages/TravelingSalesperson";
 import ColoracionGrafos from "./Pages/ColoracionGrafos/ColoracionGrafos";
 import Clique from "./Pages/Clique/Clique";
 

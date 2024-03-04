@@ -44,6 +44,7 @@ export default function TravelingSalespersonBox(props) {
     let max = factorialRecursivo(totalCities);
 
     const startTime = performance.now();
+    let totalTime = 0;
     let endTime = 0;
 
   
@@ -54,7 +55,7 @@ export default function TravelingSalespersonBox(props) {
 
 
     function setup(p5, canvasParentRef) {
-        p5.createCanvas(400, 400).parent(canvasParentRef);
+        p5.createCanvas(600, 600).parent(canvasParentRef);
 
         for (let i = 0; i < totalCities; i++) {
             let v = p5.createVector(p5.random(p5.width), p5.random(p5.height));
@@ -99,7 +100,7 @@ export default function TravelingSalespersonBox(props) {
                 iterationNumber++;
             } else if (iterationNumber === max) {
                 console.log("Mejor distancia: " + recordDistance);
-                console.log("Tiempo tomado para la mejor ruta: " + endTime / 1000);
+                console.log("Tiempo tomado para la mejor ruta: " + totalTime/1000);
                 console.log("Total distances: " + totalDistances);
                 console.log("Total times: " + totalTimes);
             }
@@ -118,14 +119,20 @@ export default function TravelingSalespersonBox(props) {
                 bestEver = cities.slice();
                 console.log(recordDistance);
                 endTime = performance.now();
-                totalTimes.push(endTime / 1000);
+                totalTime = endTime - startTime;
+                totalTimes.push(totalTime / 1000);
                 totalDistances.push(recordDistance);
             }
 
 
-            p5.fill(249, 255, 0);
+            p5.fill(0, 0, 0);
+            p5.stroke(255);
             p5.textSize(16);
             p5.text("Iteration: " + iterationNumber, 10, 30);
+            // Remove some decimals from the percentage.
+            p5.text("Percentage: " + Math.round((iterationNumber / max) * 100) + "%", 10, 70);
+            p5.text("Tiempo tomado para la mejor ruta: " + totalTime/1000 + " segundos", 10, 50);
+            p5.text("Mejor distancia: " + recordDistance);
 
         }
     }

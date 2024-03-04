@@ -1,5 +1,10 @@
 import React, { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 import TravelingSalespersonBox from "../../Components/TravelingSalespersonBox/TravelingSalespersonBox";
+import { Container } from "react-bootstrap";
+
+
 
 function TravelingSalesperson() {
     const [totalCities, setTotalCities] = useState(7);
@@ -14,15 +19,15 @@ function TravelingSalesperson() {
     };
 
     return (
-        <div>
+        <Container className="d-flex align-items-center justify-content-center">
             <input
                 type="number"
                 value={totalCities}
                 onChange={(e) => handleTotalCitiesChange(e.target.value)}
             />
-            <button onClick={handleRefresh}>Incrementar Key</button>
+            <Button variant="outline-success" onClick={handleRefresh}>Update nodes</Button>
             <TravelingSalespersonBox key={refreshKey} totalCities={totalCities} />
-        </div>
+        </Container>
     );
 }
 

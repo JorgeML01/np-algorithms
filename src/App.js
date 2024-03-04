@@ -5,6 +5,7 @@ import TravelingSalesperson from "./Pages/TravelingSalesperson";
 import ColoracionGrafos from "./Pages/ColoracionGrafos/ColoracionGrafos";
 import Clique from "./Pages/Clique/Clique";
 
+
 function App() {
   return (
     <Router>

@@ -1,2 +1,4 @@
 import TravelingSalesperson from "./TravelingSalespersonBox";
-export default TravelingSalesperson;
+import TravelingSalespersonBoxApproximation from "./TravelingSalespersonBoxApproximation";
+import TravelingSalespersonFinalBox from "./TravelingSalesPersonFinalBox";
+export default { TravelingSalesperson, TravelingSalespersonBoxApproximation, TravelingSalespersonFinalBox};

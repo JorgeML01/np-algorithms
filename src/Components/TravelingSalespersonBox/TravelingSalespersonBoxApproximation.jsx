@@ -27,7 +27,7 @@ function dist(x0, y0, x1, y1) {
     return Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0));
 }
 
-export default function TravelingSalespersonBox(props) {
+export default function TravelingSalespersonBoxApproximation(props) {
 
     const [totalCities, setTotalCities] = useState(props.totalCities);
 
@@ -129,9 +129,8 @@ export default function TravelingSalespersonBox(props) {
             p5.stroke(255);
             p5.textSize(14);
             p5.text("Iteration: " + iterationNumber, 10, 30);
-            // Remove some decimals from the percentage.
             p5.text("Percentage: " + Math.round((iterationNumber / max) * 100) + "%", 10, 70);
-            p5.text("Tiempo tomado para la mejor ruta: " + totalTime/1000 + " segundos", 10, 50);
+            p5.text("Tiempo tomado para la mejor ruta approximation: " + totalTime/1000 + " segundos", 10, 50);
             p5.text("Mejor distancia: " + recordDistance);
 
         }

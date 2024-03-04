@@ -40,7 +40,7 @@ export default function TravelingSalespersonBox(props) {
     let bestEver;
 
     // Test
-    let contador = 0;
+    let iterationNumber = 0;
     let max = factorialRecursivo(totalCities);
 
     const startTime = performance.now();
@@ -51,20 +51,6 @@ export default function TravelingSalespersonBox(props) {
         // Este efecto se ejecutará cuando totalCities cambie
         setTotalCities(props.totalCities);
     }, [props.totalCities]);
-
-
-    function resetVariables(p5) {
-        setTotalCities(props.totalCities);
-        cities = [];
-        totalTimes = [];
-        totalDistances = [];
-        recordDistance = undefined;
-        bestEver = undefined;
-        contador = 0;
-        max = factorialRecursivo(totalCities);
-        endTime = 0;
-        console.log(props.totalCities);
-    }
 
 
     function setup(p5, canvasParentRef) {
@@ -104,13 +90,14 @@ export default function TravelingSalespersonBox(props) {
             p5.strokeWeight(4);
             p5.noFill();
             p5.beginShape();
-            contador++;
+
             for (let i = 0; i < cities.length; i++) {
                 p5.vertex(bestEver[i].x, bestEver[i].y);
             }
-            if (contador < max) {
-                console.log(contador);
-            } else if (contador === max) {
+            if (iterationNumber < max) {
+                console.log(iterationNumber);
+                iterationNumber++;
+            } else if (iterationNumber === max) {
                 console.log("Mejor distancia: " + recordDistance);
                 console.log("Tiempo tomado para la mejor ruta: " + endTime / 1000);
                 console.log("Total distances: " + totalDistances);
@@ -121,7 +108,7 @@ export default function TravelingSalespersonBox(props) {
             var i = p5.floor(p5.random(cities.length));
             var j = p5.floor(p5.random(cities.length));
     
-            if (contador < max) {
+            if (iterationNumber < max) {
                 swap(cities, i, j);
             }
     
@@ -134,6 +121,12 @@ export default function TravelingSalespersonBox(props) {
                 totalTimes.push(endTime / 1000);
                 totalDistances.push(recordDistance);
             }
+
+
+            p5.fill(249, 255, 0);
+            p5.textSize(16);
+            p5.text("Iteration: " + iterationNumber, 10, 30);
+
         }
     }
     
@@ -141,7 +134,6 @@ export default function TravelingSalespersonBox(props) {
     return (
         <div>
             <Sketch setup={setup} draw={draw} />
-            <button onClick={() => resetVariables()}>Reiniciar</button>
         </div>
     );
 }

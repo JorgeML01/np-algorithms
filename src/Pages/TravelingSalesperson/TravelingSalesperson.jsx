@@ -10,7 +10,6 @@ function TravelingSalesperson() {
     };
 
     const handleRefresh = () => {
-        // Incrementar el valor de refreshKey
         setRefreshKey((prevKey) => prevKey + 1);
     };
 

@@ -139,6 +139,7 @@ export default function TravelingSalespersonBoxApproximation(props) {
 
     return (
         <div>
+            <h4>Traveling Salesperson Problem - Approximation</h4>
             <Sketch setup={setup} draw={draw} />
         </div>
     );

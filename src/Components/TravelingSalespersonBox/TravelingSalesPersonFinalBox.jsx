@@ -1,6 +1,7 @@
 import React from "react";
 import TravelingSalespersonBox from "./TravelingSalespersonBox";
 import TravelingSalespersonBoxApproximation from "./TravelingSalespersonBoxApproximation";
+import TravelingSalespersonMap from "./TravelingSalespersonMap";
 import { Container, Row, Col } from "react-bootstrap";
 
 function TravelingSalespersonFinalBox(props) {
@@ -14,6 +15,11 @@ function TravelingSalespersonFinalBox(props) {
                     </Col>
                     <Col>
                         <TravelingSalespersonBoxApproximation totalCities={totalCities} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <TravelingSalespersonMap totalCities={7} />
                     </Col>
                 </Row>
             </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sketch from "react-p5";
 
+
 function factorialRecursivo (n) {
     if (n == 0){
       return 1;
@@ -34,7 +35,6 @@ export default function TravelingSalespersonBox(props) {
     let cities = [];
     let totalTimes = [];
     let totalDistances = [];
-    //let totalCities = props.totalCities;
 
     let recordDistance;
     let bestEver;
@@ -47,7 +47,7 @@ export default function TravelingSalespersonBox(props) {
     let totalTime = 0;
     let endTime = 0;
 
-  
+
     useEffect(() => {
         // Este efecto se ejecutará cuando totalCities cambie
         setTotalCities(props.totalCities);
@@ -65,9 +65,11 @@ export default function TravelingSalespersonBox(props) {
         var d = calcDistance(cities);
         recordDistance = d;
         bestEver = cities.slice();
+
     }
 
     function draw(p5) {
+
         p5.background(0);
         p5.fill(255);
     
@@ -136,7 +138,6 @@ export default function TravelingSalespersonBox(props) {
 
         }
     }
-    
 
     return (
         <div>

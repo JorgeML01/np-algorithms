@@ -1,0 +1,20 @@
+.container-class {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.input-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-update {
+    margin-left: 10px;
+    margin-bottom: 4px;
+}

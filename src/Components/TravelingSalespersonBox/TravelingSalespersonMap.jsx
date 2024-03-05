@@ -1,31 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sketch from "react-p5";
+import {factorialRecursivo, calcDistance, swap} from "./functions.js";
 
-function factorialRecursivo(n) {
-  if (n === 0) {
-    return 1;
-  }
-  return n * factorialRecursivo(n - 1);
-}
-
-function swap(a, i, j) {
-  var temp = a[i];
-  a[i] = a[j];
-  a[j] = temp;
-}
-
-function calcDistance(points) {
-  var sum = 0;
-  for (var i = 0; i < points.length - 1; i++) {
-    var d = dist(points[i].x, points[i].y, points[i + 1].x, points[i + 1].y);
-    sum += d;
-  }
-  return sum;
-}
-
-function dist(x0, y0, x1, y1) {
-  return Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0));
-}
 
 export default function TravelingSalespersonMap(props) {
 
@@ -36,6 +12,7 @@ export default function TravelingSalespersonMap(props) {
     let cities = [];
     let totalTimes = [];
     let totalDistances = [];
+    let cityAdded = [];
     let recordDistance;
     let bestEver;
     let iterationNumber = 0;
@@ -74,8 +51,15 @@ export default function TravelingSalespersonMap(props) {
             ];
 
             for (let i = 0; i < totalCities; i++) {
-                let v = p5.createVector(nodeCoordinates[i].x, nodeCoordinates[i].y);
-                cities[i] = v;
+              while (true) {
+                let randomIndex = Math.floor(p5.random(nodeCoordinates.length));
+                if (!cityAdded.includes(randomIndex)) {
+                  cityAdded.push(randomIndex);
+                  let v = p5.createVector(nodeCoordinates[randomIndex].x, nodeCoordinates[randomIndex].y);
+                  cities[i] = v;
+                  break;
+                }
+              }
             }
 
             let d = calcDistance(cities);
@@ -100,6 +84,13 @@ export default function TravelingSalespersonMap(props) {
         p5.beginShape();
         for (let i = 0; i < cities.length; i++) {
             p5.vertex(cities[i].x, cities[i].y);
+        }
+        p5.endShape();
+
+        p5.beginShape();
+        for (let i = 0; i < cities.length; i++) {
+            p5.fill(255,0,0);
+            p5.ellipse(cities[i].x, cities[i].y, 20, 20);
         }
         p5.endShape();
 
@@ -149,6 +140,7 @@ export default function TravelingSalespersonMap(props) {
         p5.text("Tiempo tomado para la mejor ruta: " + totalTime/1000 + " segundos", 10, 50);
         p5.text("Mejor distancia: " + recordDistance);
 
+        //p5.frameRate(1);
   }
 
   return (

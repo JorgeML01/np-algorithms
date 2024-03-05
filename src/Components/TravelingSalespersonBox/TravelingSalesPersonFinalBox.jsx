@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles.css";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import TravelingSalespersonBox from "./TravelingSalespersonBox";
@@ -32,15 +33,16 @@ function TravelingSalespersonFinalBox(props) {
                     </Col>
                 </Row>
                 <Row>
-                    <input
-                        type="number"
-                        min={1}
-                        max={12}
-                        value={totalCitiesMap}
-                        onChange={handleTotalCitiesChange}
-                    />
                     <Col>
-                    <Button variant="outline-success" onClick={handleRefresh} className="button-update">Update nodes</Button>
+                        <input
+                            type="number"
+                            min={1}
+                            max={12}
+                            value={totalCitiesMap}
+                            onChange={handleTotalCitiesChange}
+                            className="input-class"
+                        />
+                        <Button variant="outline-success" onClick={handleRefresh} className="button-update">Update nodes</Button>
                         <TravelingSalespersonMap key={refreshKey} totalCities={totalCitiesMap} />
                     </Col>
                 </Row>

@@ -32,6 +32,7 @@ export default function TravelingSalespersonMap(props) {
     let setupOnce = 0;
 
     const [totalCities, setTotalCities] = useState(props.totalCities);
+    
     let cities = [];
     let totalTimes = [];
     let totalDistances = [];
@@ -51,7 +52,7 @@ export default function TravelingSalespersonMap(props) {
     function preload(p5) {
         backgroundImage = p5.loadImage("/honduras-map.jpg"); // Asegúrate de que la ruta sea correcta
     }
-
+    
     function setup(p5, canvasParentRef) {
         if (setupOnce === 0) {
             p5.createCanvas(487, 333).parent(canvasParentRef);
@@ -65,10 +66,14 @@ export default function TravelingSalespersonMap(props) {
                 { x: 48,  y: 187 },
                 { x: 427, y: 145 },
                 { x: 266, y: 98 },
+                { x: 242, y: 194 },
+                { x: 170, y: 158 },
+                { x: 215, y: 69 },
+                { x: 213, y: 247 },
+                { x: 93, y: 229 },
             ];
 
-            for (let i = 0; i < 7; i++) {
-                // Utiliza las coordenadas específicas en lugar de posiciones aleatorias
+            for (let i = 0; i < totalCities; i++) {
                 let v = p5.createVector(nodeCoordinates[i].x, nodeCoordinates[i].y);
                 cities[i] = v;
             }

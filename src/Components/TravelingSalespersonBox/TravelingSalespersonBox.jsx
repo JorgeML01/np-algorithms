@@ -1,31 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sketch from "react-p5";
+import {factorialRecursivo, calcDistance, swap} from "./functions.js";
 
-function factorialRecursivo (n) {
-    if (n == 0){
-      return 1;
-    }
-    return n * factorialRecursivo (n-1);
-}
-
-function swap(a, i, j) {
-    var temp = a[i];
-    a[i] = a[j];
-    a[j] = temp;
-}
-
-function calcDistance(points) { 
-    var sum = 0;
-    for (var i = 0; i < points.length-1; i++) {
-        var d = dist(points[i].x, points[i].y, points[i+1].x, points[i+1].y);
-        sum += d;
-    }
-    return sum;
-}
-
-function dist(x0, y0, x1, y1) {
-    return Math.sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0));
-}
 
 export default function TravelingSalespersonBox(props) {
 
@@ -34,7 +10,6 @@ export default function TravelingSalespersonBox(props) {
     let cities = [];
     let totalTimes = [];
     let totalDistances = [];
-    //let totalCities = props.totalCities;
 
     let recordDistance;
     let bestEver;
@@ -47,7 +22,7 @@ export default function TravelingSalespersonBox(props) {
     let totalTime = 0;
     let endTime = 0;
 
-  
+
     useEffect(() => {
         // Este efecto se ejecutará cuando totalCities cambie
         setTotalCities(props.totalCities);
@@ -65,9 +40,11 @@ export default function TravelingSalespersonBox(props) {
         var d = calcDistance(cities);
         recordDistance = d;
         bestEver = cities.slice();
+
     }
 
     function draw(p5) {
+
         p5.background(0);
         p5.fill(255);
     
@@ -136,7 +113,6 @@ export default function TravelingSalespersonBox(props) {
 
         }
     }
-    
 
     return (
         <div>

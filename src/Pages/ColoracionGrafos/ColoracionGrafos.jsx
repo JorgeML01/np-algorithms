@@ -15,7 +15,7 @@ const ColoracionGrafos = () => {
   
     // Dibujar nodos
     nodes.forEach((node, index) => {
-      const color = colors[index]; // Usar el valor del color
+      const color = colors[index];
       if (color !== null) {
         p5.fill(p5.color(color.r, color.g, color.b));
       } else {

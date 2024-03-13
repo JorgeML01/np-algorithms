@@ -23,12 +23,9 @@ export default function TravelingSalespersonBox(props) {
     let endTime = 0;
 
 
-    // Testing permutations.
     var totalPermutations;
     var count = 0;
     var order = [];
-    // end testing permutations.
-
 
     useEffect(() => {
         // Este efecto se ejecutará cuando totalCities cambie
@@ -69,7 +66,7 @@ export default function TravelingSalespersonBox(props) {
             p5.noFill();
     
             p5.beginShape();
-            for (let i = 0; i < cities.length; i++) {
+            for (let i = 0; i < order.length; i++) {
                 p5.vertex(cities[i].x, cities[i].y);
             }
             p5.endShape();
@@ -79,8 +76,9 @@ export default function TravelingSalespersonBox(props) {
             p5.noFill();
             p5.beginShape();
 
-            for (let i = 0; i < cities.length; i++) {
-                p5.vertex(bestEver[i].x, bestEver[i].y);
+            for (let i = 0; i < order.length; i++) {
+                let n = order[i];
+                p5.vertex(bestEver[n].x, bestEver[n].y);
             }
             if (iterationNumber < max) {
                 console.log(iterationNumber);
@@ -123,6 +121,7 @@ export default function TravelingSalespersonBox(props) {
 
             nextOrder();
 
+            p5.frameRate(1);
         }
 
         function nextOrder() {

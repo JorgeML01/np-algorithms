@@ -97,7 +97,7 @@ export default function TravelingSalespersonMap(props) {
         p5.endShape();
 
         p5.beginShape();
-        for (let i = 0; i < cities.length; i++) {
+        for (let i = 0; i < order.length; i++) {
             p5.fill(255,0,0);
             p5.ellipse(cities[i].x, cities[i].y, 20, 20);
         }
@@ -108,8 +108,9 @@ export default function TravelingSalespersonMap(props) {
         p5.noFill();
         p5.beginShape();
 
-        for (let i = 0; i < cities.length; i++) {
-            p5.vertex(bestEver[i].x, bestEver[i].y);
+        for (let i = 0; i < order.length; i++) {
+            let n = order[i];
+            p5.vertex(bestEver[n].x, bestEver[n].y);
         }
         if (iterationNumber < max) {
             console.log(iterationNumber);
@@ -149,10 +150,11 @@ export default function TravelingSalespersonMap(props) {
         p5.text("Tiempo tomado para la mejor ruta: " + totalTime/1000 + " segundos", 10, 50);
         p5.text("Mejor distancia: " + recordDistance);
 
-        p5.frameRate(1);
+        // p5.frameRate(1);
         nextOrder();
-
-    function nextOrder() {
+  }
+  
+  function nextOrder() {
         count++;
 
         var largestI = -1;
@@ -165,7 +167,7 @@ export default function TravelingSalespersonMap(props) {
             p5.noLoop();
             console.log('finished');
         }
-    
+
         var largestJ = -1;
         for (var j = 0; j < order.length; j++) {
             if (order[largestI] < order[j]) {
@@ -174,13 +176,11 @@ export default function TravelingSalespersonMap(props) {
         }
 
         swap(order, largestI, largestJ);
-    
+
         var endArray = order.splice(largestI + 1);
         endArray.reverse();
         order = order.concat(endArray);
     }
-          
-  }
 
   return (
     <div>

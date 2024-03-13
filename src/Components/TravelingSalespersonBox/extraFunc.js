@@ -29,7 +29,7 @@ function setup() {
 
 function draw() {
   background(0);
-  //frameRate(5);
+
   fill(255);
   for (var i = 0; i < cities.length; i++) {
     ellipse(cities[i].x, cities[i].y, 8, 8);

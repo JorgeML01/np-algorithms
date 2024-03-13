@@ -23,6 +23,13 @@ export default function TravelingSalespersonBox(props) {
     let endTime = 0;
 
 
+    // Testing permutations.
+    var totalPermutations;
+    var count = 0;
+    var order = [];
+    // end testing permutations.
+
+
     useEffect(() => {
         // Este efecto se ejecutará cuando totalCities cambie
         setTotalCities(props.totalCities);
@@ -35,12 +42,15 @@ export default function TravelingSalespersonBox(props) {
         for (let i = 0; i < totalCities; i++) {
             let v = p5.createVector(p5.random(p5.width), p5.random(p5.height));
             cities[i] = v;
+            order[i] = i;
         }
 
         var d = calcDistance(cities);
         recordDistance = d;
         bestEver = cities.slice();
 
+        totalPermutations = factorialRecursivo(totalCities);
+        console.log(totalPermutations);
     }
 
     function draw(p5) {
@@ -111,6 +121,36 @@ export default function TravelingSalespersonBox(props) {
             p5.text("Tiempo tomado para la mejor ruta: " + totalTime/1000 + " segundos", 10, 50);
             p5.text("Mejor distancia: " + recordDistance);
 
+            nextOrder();
+
+        }
+
+        function nextOrder() {
+            count++;
+          
+            var largestI = -1;
+            for (var i = 0; i < order.length - 1; i++) {
+              if (order[i] < order[i + 1]) {
+                largestI = i;
+              }
+            }
+            if (largestI == -1) {
+              p5.noLoop();
+              console.log('finished');
+            }
+          
+            var largestJ = -1;
+            for (var j = 0; j < order.length; j++) {
+              if (order[largestI] < order[j]) {
+                largestJ = j;
+              }
+            }
+          
+            swap(order, largestI, largestJ);
+          
+            var endArray = order.splice(largestI + 1);
+            endArray.reverse();
+            order = order.concat(endArray);
         }
     }
 

@@ -152,35 +152,35 @@ export default function TravelingSalespersonMap(props) {
 
         // p5.frameRate(1);
         nextOrder();
-  }
-  
-  function nextOrder() {
-        count++;
-
-        var largestI = -1;
-        for (var i = 0; i < order.length - 1; i++) {
-            if (order[i] < order[i + 1]) {
-                largestI = i;
+        
+        function nextOrder() {
+            count++;
+    
+            var largestI = -1;
+            for (var i = 0; i < order.length - 1; i++) {
+                if (order[i] < order[i + 1]) {
+                    largestI = i;
+                }
             }
-        }
-        if (largestI == -1) {
-            p5.noLoop();
-            console.log('finished');
-        }
-
-        var largestJ = -1;
-        for (var j = 0; j < order.length; j++) {
-            if (order[largestI] < order[j]) {
-                largestJ = j;
+            if (largestI == -1) {
+                p5.noLoop();
+                console.log('finished');
             }
+    
+            var largestJ = -1;
+            for (var j = 0; j < order.length; j++) {
+                if (order[largestI] < order[j]) {
+                    largestJ = j;
+                }
+            }
+    
+            swap(order, largestI, largestJ);
+    
+            var endArray = order.splice(largestI + 1);
+            endArray.reverse();
+            order = order.concat(endArray);
         }
-
-        swap(order, largestI, largestJ);
-
-        var endArray = order.splice(largestI + 1);
-        endArray.reverse();
-        order = order.concat(endArray);
-    }
+}
 
   return (
     <div>

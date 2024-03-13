@@ -155,7 +155,7 @@ export default function TravelingSalespersonBox(props) {
 
     return (
         <div>
-            <h4>Traveling Salesperson Problem - Exact</h4>
+            <h4>Traveling Salesperson Problem - Permutations</h4>
             <Sketch setup={setup} draw={draw} />
         </div>
     );

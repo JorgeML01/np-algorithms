@@ -184,7 +184,7 @@ export default function TravelingSalespersonMap(props) {
 
   return (
     <div>
-      <h4>Honduras map example</h4>
+      <h4>Honduras map example - Permutations</h4>
       <Sketch preload={preload} setup={setup} draw={draw} />
     </div>
   );

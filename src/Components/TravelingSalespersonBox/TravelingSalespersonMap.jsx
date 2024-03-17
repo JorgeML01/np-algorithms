@@ -32,7 +32,7 @@ export default function TravelingSalespersonMap(props) {
     }, [props.totalCities]);
 
     function preload(p5) {
-        backgroundImage = p5.loadImage("/honduras-map.jpg"); // Asegúrate de que la ruta sea correcta
+        backgroundImage = p5.loadImage("/honduras-map.jpg");
     }
     
     function setup(p5, canvasParentRef) {

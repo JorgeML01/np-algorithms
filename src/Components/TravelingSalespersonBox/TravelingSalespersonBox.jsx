@@ -114,14 +114,13 @@ export default function TravelingSalespersonBox(props) {
             p5.stroke(255);
             p5.textSize(14);
             p5.text("Iteration: " + iterationNumber, 10, 30);
-            // Remove some decimals from the percentage.
             p5.text("Percentage: " + Math.round((iterationNumber / max) * 100) + "%", 10, 70);
             p5.text("Tiempo tomado para la mejor ruta: " + totalTime/1000 + " segundos", 10, 50);
             p5.text("Mejor distancia: " + recordDistance);
 
             nextOrder();
 
-            p5.frameRate(1);
+            //p5.frameRate(1);
         }
 
         function nextOrder() {

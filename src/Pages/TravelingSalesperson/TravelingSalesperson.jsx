@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import Button from 'react-bootstrap/Button';
 import TravelingSalespersonFinalBox from "../../Components/TravelingSalespersonBox/TravelingSalesPersonFinalBox";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 function TravelingSalesperson() {
     const [totalCities, setTotalCities] = useState(0);
@@ -19,17 +19,21 @@ function TravelingSalesperson() {
 
     return (
         <Container className="text-center justify-content-center container-class">
-            <div className="input-button">
-                <input
-                    type="number"
-                    value={totalCities}
-                    onChange={(e) => handleTotalCitiesChange(e.target.value)}
-                />
-                <Button variant="outline-success" onClick={handleRefresh} className="button-update">Update nodes</Button>
-            </div>
+            <Row style={{ marginLeft: '-38rem', marginTop: '7rem' }}>
+                <Col className="text-center justify-content-center">
+                    <div className="input-button">
+                        <input
+                            type="number"
+                            value={totalCities}
+                            onChange={(e) => handleTotalCitiesChange(e.target.value)}
+                        />
+                        <Button variant="outline-success" onClick={handleRefresh} className="button-update">Update nodes</Button>
+                    </div>
+                </Col>
+            </Row>
             <TravelingSalespersonFinalBox key={refreshKey} totalCities={totalCities} />
         </Container>
     );
 }
 
-export default TravelingSalesperson
+export default TravelingSalesperson;

@@ -21,29 +21,31 @@ function TravelingSalespersonFinalBox(props) {
     };
 
     return (
-        <Container className="text-center justify-content-center">
-            <div className="d-flex flex-column">
+        <div style={{ marginTop: '-1rem' }}>
+            <Container className="text-center justify-content-center">
+            <div className="d-flex">
                 <Row>
-                    <Col>
+                    <Col style={{ marginTop: '1rem' }}>
                         <TravelingSalespersonBox totalCities={totalCities}/>
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <input
+                <Col style={{ marginLeft: '7rem', marginTop: '1.7rem' }}>
+                    <input
                             type="number"
                             min={1}
                             max={12}
                             value={totalCitiesMap}
                             onChange={handleTotalCitiesChange}
                             className="input-class"
-                        />
+                    />
                         <Button variant="outline-success" onClick={handleRefresh} className="button-update">Update nodes</Button>
                         <TravelingSalespersonMap key={refreshKey} totalCities={totalCitiesMap} />
                     </Col>
                 </Row>
             </div>
-        </Container>
+            </Container>
+        </div>
     );
 }
 

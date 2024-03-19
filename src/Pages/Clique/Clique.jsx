@@ -5,10 +5,12 @@ const GrafoConClique = () => {
   const [nodesCount, setNodesCount] = useState(5);
   const [nodes, setNodes] = useState([]);
   const [cliques, setCliques] = useState([]);
+  const [maxCliqueSize, setMaxCliqueSize] = useState(0);
+  const [maxCliqueCount, setMaxCliqueCount] = useState(0); 
   const [progress, setProgress] = useState(0);
   const [iterations, setIterations] = useState(0);
   const [times, setTimes] = useState([]);
-  
+
   useEffect(() => {
     generateNodes(nodesCount);
   }, [nodesCount]);
@@ -23,6 +25,8 @@ const GrafoConClique = () => {
       y: Math.random() * 400,
     })));
     setCliques([]);
+    setMaxCliqueSize(0);
+    setMaxCliqueCount(0);
     setIterations(0);
     setProgress(0);
   };
@@ -31,11 +35,21 @@ const GrafoConClique = () => {
     const startTime = performance.now();
     const newCliques = [];
     let newIterations = 0;
+    let currentMaxCliqueSize = 0;
+    let cliqueSizeCounts = new Map();
 
     const backtrack = (clique, candidates) => {
       newIterations++;
       if (candidates.length === 0) {
-        if (clique.length > 0) newCliques.push(clique);
+        if (clique.length > 0) {
+          newCliques.push(clique);
+          let count = cliqueSizeCounts.get(clique.length) || 0;
+          cliqueSizeCounts.set(clique.length, count + 1);
+
+          if (clique.length > currentMaxCliqueSize) {
+            currentMaxCliqueSize = clique.length;
+          }
+        }
         return;
       }
       const node = candidates[0];
@@ -46,12 +60,13 @@ const GrafoConClique = () => {
 
     backtrack([], nodes);
     const endTime = performance.now();
-// Dentro de la función findCliques, después de calcular el tiempo de ejecución
-const executionTime = (endTime - startTime) / 1000;
-const formattedTime = executionTime < 0.001 ? "Menos de un milisegundo" : executionTime.toFixed(3);
-setTimes([...times, { nodes: nodesCount, time: formattedTime, iterations: newIterations }]);
+    const executionTime = (endTime - startTime) / 1000;
+    const formattedTime = executionTime < 0.001 ? "Menos de un milisegundo" : executionTime.toFixed(3);
+    setTimes([...times, { nodes: nodesCount, time: formattedTime, iterations: newIterations }]);
     setCliques(newCliques);
     setIterations(newIterations);
+    setMaxCliqueSize(currentMaxCliqueSize);
+    setMaxCliqueCount(cliqueSizeCounts.get(currentMaxCliqueSize) || 0);
     setProgress(100);
   };
 
@@ -98,6 +113,8 @@ setTimes([...times, { nodes: nodesCount, time: formattedTime, iterations: newIte
         </div>
         <progress value={progress} max="100" style={{ width: '100%', height: '20px', marginBottom: '1rem' }}></progress>
         <div style={{ color: '#1F2937', marginBottom: '1rem' }}>Iteraciones: {iterations}</div>
+        <div style={{ color: '#1F2937', marginBottom: '1rem' }}>Tamaño máximo del clique: {maxCliqueSize}</div>
+        <div style={{ color: '#1F2937', marginBottom: '1rem' }}>Repeticiones del clique máximo: {maxCliqueCount}</div>
         {times.length > 0 && (
           <table style={{ width: '100%', textAlign: 'left', marginBottom: '1rem' }}>
             <thead>
